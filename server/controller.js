@@ -258,10 +258,10 @@ module.exports = {
     },
     getCities: (req, res) => {
         sequelize.query(`
-            SELECT  city_id, city.name, city.rating, country.name, country.country_id
+        SELECT  city_id, city.name, rating, country.name, country.country_id
             FROM cities AS city
             JOIN countries AS country
-            ON country.country_id = city.country_id
+            ON city.country_id = country.country_id
             ORDER BY city.rating DESC;
         `)
         .then((dbRes) => {
@@ -284,6 +284,6 @@ module.exports = {
             res.status(200).send(dbRes[0])
         })
         .catch((err) => console.log(err))
-    },
+    }
     
 }
