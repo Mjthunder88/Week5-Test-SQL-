@@ -25,7 +25,7 @@ module.exports = {
                 city_id SERIAL PRIMARY KEY,
                 name VARCHAR,
                 rating INT,
-                country_id INT NOT NULL REFERENCES countries.country_id
+                country_id INT NOT NULL REFERENCES countries(country_id)
 
             );
 
@@ -225,6 +225,11 @@ module.exports = {
             ('Yemen'),
             ('Zambia'),
             ('Zimbabwe');
+
+            INSERT INTO cities (name, rating, country_id)
+            VALUES('Mapleton', 5, 187),
+            ('Springville', 3, 187),
+            ('Antananarivo', 4, 102);
         `).then(() => {
             console.log('DB seeded!')
             res.sendStatus(200)
